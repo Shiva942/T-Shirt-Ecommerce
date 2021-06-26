@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./core/Home";
-import Signup from "./user/Signup";
-import Signin from "./user/Signin";
+import Home from "./core/Home.js";
+import Signup from './user/Signup.js';
+import Signin from './user/Signin.js';
 
 const Routes = () => {
   return (
