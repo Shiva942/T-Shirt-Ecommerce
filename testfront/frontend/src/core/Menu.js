@@ -11,7 +11,7 @@ const currentTab = (history, path) => {
 };
 
 const Menu = ({ history }) => (
-  <div>
+  <nav>
     <ul className="nav nav-tabs bg-dark">
       <li className="nav-item">
         <Link style={currentTab(history, "/")} className="nav-link" to="/">
@@ -72,20 +72,22 @@ const Menu = ({ history }) => (
       </Fragment>
       )}
       {isAutheticated() && (
-        <li className="nav-inline">
-        <span className="nav-link text-warning"
-          onClick={()=>{
-            signout(()=>{
-              history.push("/")
-            })
-          }}
-        >
+        <li className="nav-item"> 
+         <span
+         className="nav-link text-warning"
+         onClick={() => {
+           signout(() => {
+             history.push("/");
+           });
+         }}
+       >
 
-        </span>
-      </li>
+         Signout
+       </span>
+       </li>                    
       )}
     </ul>
-  </div>
+  </nav>
 );
 
 
