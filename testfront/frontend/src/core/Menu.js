@@ -90,6 +90,4 @@ const Menu = ({ history }) => (
   </nav>
 );
 
-
-
 export default withRouter(Menu);
