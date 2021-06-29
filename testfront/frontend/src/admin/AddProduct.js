@@ -130,9 +130,11 @@ const AddProduct = () => {
       </div>
       <div className="form-group">
         <select
+          name="Category"
           onChange={handleChange("category")}
           className="form-control"
           placeholder="Category"
+          
         >
           <option>Select</option>
           {categories &&

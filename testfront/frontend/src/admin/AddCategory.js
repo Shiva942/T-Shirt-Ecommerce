@@ -31,6 +31,7 @@ const AddCategory = () => {
 
     //backend request fired
     createCategory(user._id, token, { name }).then(data => {
+      console.log(data);
       if (data.error) {
         setError(true);
       } else {

@@ -20,6 +20,7 @@ exports.createCategory = (req, res) => {
         error: "NOT able to save category in DB"
       });
     }
+    console.log(category);
     res.json({ category });
   });
 };

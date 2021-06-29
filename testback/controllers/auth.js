@@ -71,13 +71,15 @@ exports.signout = (req, res) => {
 //protected routes
 exports.isSignedIn = expressJwt({
   secret: process.env.SECRET,
-  algorithms: ['RS256']
+  userProperty:"auth",
+  algorithms: ['sha1', 'RS256', 'HS256']
 });
 
 //custom middlewares
 exports.isAuthenticated = (req, res, next) => {
   let checker = req.profile && req.auth && req.profile._id == req.auth._id;
   if (!checker) {
+    console.log("NOT AUTH");
     return res.status(403).json({
       error: "ACCESS DENIED"
     });
