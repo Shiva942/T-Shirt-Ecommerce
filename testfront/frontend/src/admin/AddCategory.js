@@ -43,6 +43,7 @@ const AddCategory = () => {
   };
 
   const successMessage = () => {
+    console.log(success);
     if (success) {
       return <h4 className="text-success">Category created successfully</h4>;
     }
