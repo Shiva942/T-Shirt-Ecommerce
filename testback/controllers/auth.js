@@ -29,6 +29,7 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   const errors = validationResult(req);
+  console.log(req.body);
   const { email, password } = req.body;
 
   if (!errors.isEmpty()) {
@@ -57,7 +58,7 @@ exports.signin = (req, res) => {
 
     //send response to front end
     const { _id, name, email, role } = user;
-    return res.json({ token, user: { _id, name, email, role } });
+    return res.json({ token, user: { _id, name, email, role },status: "GOOD" });
   });
 };
 
@@ -78,6 +79,7 @@ exports.isSignedIn = expressJwt({
 //custom middlewares
 exports.isAuthenticated = (req, res, next) => {
   let checker = req.profile && req.auth && req.profile._id == req.auth._id;
+  console.log(checker);
   if (!checker) {
     console.log("NOT AUTH");
     return res.status(403).json({

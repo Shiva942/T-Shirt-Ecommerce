@@ -2,7 +2,8 @@ import {API} from "../../backend";
 
 
 export const signin = user =>{
-    return fetch(`${API}/signin`,{
+    console.log("AFETR")
+    return fetch(`${API}signin`,{
         method: "POST",
         headers:{
             Accept:"application/JSON",
@@ -11,7 +12,7 @@ export const signin = user =>{
         body:JSON.stringify(user)
     })
     .then( response =>{
-
+        console.log(response);
         return response.json()
     })
     .catch(error => console.log(error));
@@ -55,14 +56,13 @@ export const signout =(next)=>{
     }
 }
 
-export const isAutheticated =()=>{
-    if(typeof window == 'undefined'){
-        return false;
+export const isAutheticated = () => {
+    if (typeof window == "undefined") {
+      return false;
     }
-    if(localStorage.getItem("jwt")){
-        return JSON.parse(localStorage.getItem("jwt"))
+    if (localStorage.getItem("jwt")) {
+      return JSON.parse(localStorage.getItem("jwt"));
+    } else {
+      return false;
     }
-    else{
-        return false;
-    }
-}
+  };
