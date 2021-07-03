@@ -17,10 +17,10 @@ const Paymentb = ({ products, setReload = f => f, reload = undefined }) => {
   });
 
   const userId = isAutheticated() && isAutheticated().user._id;
-  const token = isAutheticated() && isAutheticated().token;
+  const Token = isAutheticated() && isAutheticated().token;
 
-  const getToken = (userId, token) => {
-    getmeToken(userId, token).then(info => {
+  const getToken = (userId, Token) => {
+    getmeToken(userId, Token).then(info => {
       console.log("INFORMATION", info);
       if (info.error) {
         console.log(info.error);
@@ -53,7 +53,7 @@ const Paymentb = ({ products, setReload = f => f, reload = undefined }) => {
   };
 
   useEffect(() => {
-    getToken(userId, token);
+    getToken(userId, Token);
   }, []);
 
   const onPurchase = () => {
@@ -65,7 +65,7 @@ const Paymentb = ({ products, setReload = f => f, reload = undefined }) => {
         paymentMethodNonce: nonce,
         amount: getAmount()
       };
-      processPayment(userId, token, paymentData)
+      processPayment(userId, Token, paymentData)
         .then(response => {
           setInfo({ ...info, success: response.success, loading: false });
           console.log("PAYMENT SUCCESS");

@@ -2,7 +2,7 @@ import {API} from "../../backend";
 
 
 export const signin = user =>{
-    console.log("AFETR")
+    console.log(user);
     return fetch(`${API}signin`,{
         method: "POST",
         headers:{

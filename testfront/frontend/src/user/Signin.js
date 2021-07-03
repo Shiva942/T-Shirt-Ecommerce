@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import { signin, authenticate, isAutheticated } from "../auth/helper";
+import { signin, authenticate, isAutheticated } from "../auth/helper/index";
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -21,14 +21,18 @@ const Signin = () => {
   };
 
   const onSubmit = event => {
+    console.log(event);
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
       .then(data => {
         if (data.error) {
+          console.log("ERROR");
+          console.log(values);
           setValues({ ...values, error: data.error, loading: false });
         } else {
           authenticate(data, () => {
+            console.log(data);console.log("DATA");
             setValues({
               ...values,
               didRedirect: true
