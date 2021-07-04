@@ -21,18 +21,23 @@ const Signin = () => {
   };
 
   const onSubmit = event => {
+    console.log("EVENT");
     console.log(event);
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
       .then(data => {
+        console.log("ON SUBMIT DATA");
+        console.log(data);
         if (data.error) {
           console.log("ERROR");
           console.log(values);
           setValues({ ...values, error: data.error, loading: false });
         } else {
           authenticate(data, () => {
-            console.log(data);console.log("DATA");
+            console.log("else");
+            console.log(data);
+            console.log("DATA");
             setValues({
               ...values,
               didRedirect: true
@@ -40,7 +45,9 @@ const Signin = () => {
           });
         }
       })
-      .catch(console.log("signin request failed"));
+      .catch(error=>{
+        console.log("Error hai");
+        console.log(error)});
   };
 
 

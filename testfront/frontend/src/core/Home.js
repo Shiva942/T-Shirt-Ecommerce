@@ -28,7 +28,6 @@ export default function Home() {
     <Base title="Home Page" description="Welcome to the Tshirt Store">
       <h1 className="text-white">All of T-shirts</h1>
       <div className="row text-center">
-        
         <div className="col-8">
           {products.map((product, index) => {
             return (

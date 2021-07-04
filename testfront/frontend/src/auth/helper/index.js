@@ -1,21 +1,31 @@
 import {API} from "../../backend";
 
 
-export const signin = user =>{
+export const signin = user =>
+{
+    console.log("SIGN-IN USER");
     console.log(user);
-    return fetch(`${API}signin`,{
-        method: "POST",
-        headers:{
-            Accept:"application/JSON",
-            "Content-type":"application/JSON"
-        },
-        body:JSON.stringify(user)
-    })
-    .then( response =>{
-        console.log(response);
-        return response.json()
-    })
-    .catch(error => console.log(error));
+    const users = JSON.stringify(user);
+    return new Promise((resolve,reject)=>
+    {
+
+        fetch(`${API}/signin`,{
+            method: "POST",
+            headers:{
+                Accept:"application/JSON",
+                "Content-type":"application/JSON"
+            },
+            body:users
+        })
+        .then( response =>{
+            console.log("Sign in resp");
+            console.log(response);
+            resolve(response.json());
+        })
+        .catch(error => reject(error.json()));
+
+    }
+    );  
 }
 
 export const signup = user =>{
@@ -37,6 +47,7 @@ export const signup = user =>{
 export const authenticate =(data,next)=>{
     if(typeof window !== 'undefined')
         {
+            console.log("AUTH");
             localStorage.setItem("jwt", JSON.stringify(data));
             next();
     }

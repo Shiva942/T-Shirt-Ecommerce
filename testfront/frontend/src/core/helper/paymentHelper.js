@@ -1,7 +1,8 @@
 import { API } from "../../backend";
 
 export const getmeToken = (userId, token) => {
-  return fetch(`${API}payment/gettoken/${userId}`, {
+  console.log(userId, token);
+  return fetch(`${API}/payment/gettoken/${userId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -13,7 +14,10 @@ export const getmeToken = (userId, token) => {
       console.log(response);
       return response.json();
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      return err;
+    });
 };
 
 export const processPayment = (userId, token, paymentInfo) => {

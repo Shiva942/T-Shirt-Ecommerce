@@ -18,6 +18,10 @@ export const loadCart = () => {
     if (localStorage.getItem("cart")) {
       return JSON.parse(localStorage.getItem("cart"));
     }
+    else{
+      const cart=[];
+      return cart;
+    }
   }
 };
 
