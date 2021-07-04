@@ -2,22 +2,28 @@ import { API } from "../../backend";
 
 export const getmeToken = (userId, token) => {
   console.log(userId, token);
-  return fetch(`${API}/payment/gettoken/${userId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`
-    }
-  })
-    .then(response => {
-      console.log(response);
-      return response.json();
+  return new Promise((resolve, reject) => {
+    console.log("PROMISE");
+        fetch(`${API}payment/gettoken/${userId}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
     })
-    .catch(err => {
-      console.log(err);
-      return err;
-    });
+      .then(response => {
+        console.log("TOPEK RESPONSE");
+        console.log(response);
+        return resolve(response.json());
+      })
+      .catch(err => {
+        console.log(err);
+        reject(err.json());
+      }
+      )
+  })
+ 
 };
 
 export const processPayment = (userId, token, paymentInfo) => {

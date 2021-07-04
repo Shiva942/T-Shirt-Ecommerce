@@ -23,9 +23,11 @@ const Paymentb = ({ products, setReload = f => f, reload = undefined }) => {
     getmeToken(userId, Token).then(info => {
       console.log("INFORMATION", info);
       if (info.error) {
+        console.log("ERROR HAI");
         console.log(info.error);
         setInfo({ ...info, error: info.error });
       } else {
+        console.log(info.clientToken);
         const clientToken = info.clientToken;
         setInfo({ clientToken });
       }
@@ -69,8 +71,7 @@ const Paymentb = ({ products, setReload = f => f, reload = undefined }) => {
         .then(response => {
           setInfo({ ...info, success: response.success, loading: false });
           console.log("PAYMENT SUCCESS");
-          //TODO: empty the cart
-          //TODO: force reload
+
         })
         .catch(error => {
           setInfo({ loading: false, success: false });
